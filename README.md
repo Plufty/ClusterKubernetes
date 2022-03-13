@@ -70,7 +70,7 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl      
-12.	Executaremos o comando kubeadm – init para iniciar nosso mastere ao fim deste comando será gerado um token, lembre-se de salvá-lo, ele será necessário no futuro. No meu caso é o seguinte:
+12.	Esse passo me gerou um erro no Kubelet, então dediquei o último tópico para a solução dele, caso também encontre esse erro, vá até lá, solucione seu erro e volte.    Executaremos o comando kubeadm – init para iniciar nosso mastere ao fim deste comando será gerado um token, lembre-se de salvá-lo, ele será necessário no futuro. No meu caso é o seguinte:
 
 kubeadm join 192.168.254.147:6443 --token vmurg9.m20zvlq7pd7myruf \        --discovery-token-ca-cert-hash sha256:cd930035a44414aba217c3081632ad37035caaead039032dffd41b60bde26e0d  
 13.	Agora iremos configurar o kubernetes de acordo com a própria resposta anterior utilizando os comandos indicados: 
@@ -83,6 +83,21 @@ kubeadm join 192.168.254.147:6443 --token vmurg9.m20zvlq7pd7myruf \        --dis
 17.	Agora executaremos o comando que irá deixar nosso status como pronto:
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"  
 18.	Executamos novamente o comando kubectl get nodes e observamos que nosso cluster está prontinho.  
+
+
+# Fazendo o Deployment de uma aplicação
+
+
+Agora faremos um deployment de uma aplicação no nosso cluster kubernetes. Para esse passo escolhemos a aplicação nginx.
+1.	Para isso iremos iniciar criando um arquivo yaml com o comando
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml 
+
+2.	Após isso iremos verificar as informações sobre nosso deployment com o comando kubectl describe deployment nginx-deployment 
+
+3.	Depois verificaremos os pods gerados com o comando kubectl get pods -l app=nginx 
+4.	Agora podemos verificar as informações sobre os pods gerados com o comando kubectl describe pod <pode-name> no nosso caso, usaremos como exemplo o pod de nome nginx-deployment-9456bbbf9-7hqdc 
+Verificamos assim que nosso pod está rodando em nosso worker, ou seja, nosso deployment funcionou, Uhu!
+
 
 
 # Erro no Kubelet
