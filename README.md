@@ -4,7 +4,7 @@ Projeto SIN142 - Sistemas distribuídos Desafio 2, Cluster Kubernetes
 # Gleidson Vinícius Gomes Barbosa - 6331
 # Cluster Kubernetes - Como fazer?
 
-#OBS.: O PDF do repositório descreve exatamente os mesmos passos porém com imagens para mais detalhes.
+# OBS.: O PDF do repositório descreve exatamente os mesmos passos porém com imagens para mais detalhes.
 
 O procedimento será executado por mim em duas máquinas virtuais utilizando VMWare, então o primeiro passo será a criação de ambas as máquinas virtuais e ativar a virtualização das mesmas visto que será utilizado o KVM. Será instalado em ambas as máquinas o Ubuntu Server 20.04. Os procedimentos detalhados nesse relatório exceto pelos relacionados ao VMWare podem ser encontrados em :		
 
